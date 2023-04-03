@@ -3,6 +3,7 @@
   hosts: localhost
   connection: local
   gather_facts: no
+  tasks:
     - name: Import VPC setup Variable
       include_vars: vars/bastion_setup
 
@@ -33,7 +34,7 @@
             from_port: 22
             to_port: 22
             cidr_ip: "{{MYIP}}"
-        register: BastionSG_out
+      register: BastionSG_out
 
     - name: Creating Bastion Host
       ec2:
