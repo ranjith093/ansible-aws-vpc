@@ -209,7 +209,7 @@
         mode: '0400'
 
     - name: Insert/Update Inventory file provision-stack/inventory-vpro
-      blockinfile: |
+      blockinfile:
         path: provision-stack/inventory-vpro
         block: |
           web01 ansible_host={{web01_out.tagged_instances[0].private_ip}}
