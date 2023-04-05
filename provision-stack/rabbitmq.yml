@@ -3,50 +3,11 @@
   hosts: rmqsrvgrp
   gather_facts: no
   tasks:
-    - name: Download esl-erlang package
-      get_url:
-        url: https://packages.erlang-solutions.com/erlang/esl-erlang/FLAVOUR_1_general/esl-erlang_21.0-1~debian~stretch_amd64.deb
-        dest: /home/ubuntu/esl-erlang_21.0-1~debian~stretch_amd64.deb
-        owner: ubuntu
-        group: ubuntu
-        mode: 0755
+    - name: Transfer the script
+      copy: src=rabbitmq.sh dest=/home/ubuntu mode=0777
 
-    - name: Install esl-erlang
-      apt:
-        deb: /home/ubuntu/esl-erlang_21.0-1~debian~stretch_amd64.deb
-
-    - name: Download erlang solutions
-      get_url:
-        url: https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb
-        dest: /home/ubuntu/erlang-solutions_1.0_all.deb
-        owner: ubuntu
-        group: ubuntu
-        mode: 0755
-
-    - name: Install erlang repository
-      apt:
-        deb: /home/admin/erlang-solutions_1.0_all.deb
-
-    - name: Add an Apt signing key
-      apt_key:
-        url: https://packages.erlang-solutions.com/debian/erlang_solutions.asc
-        state: present
-
-    - name: fix unmet dependencies
-      shell: apt-get -f install
-
-    - name: Add rabbit repo
-      shell: echo "deb https://dl.bintray.com/rabbitmq/debian stretch main" | tee /etc/apt/sources.list.d/bintray.rabbitmq.list
-
-    - name: add trusted key
-      shell: wget -O- https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.asc | apt-key add -
-
-    - name: install rabbitmq
-      apt:
-        name: rabbitmq-server
-        state: present
-        update_cache: yes
-
+    - name: Execute the script
+      command: sh /home/ubuntu/rabbitmq.sh
 
     - name: Start & Enable RMQ
       service:
