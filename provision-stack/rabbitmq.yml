@@ -32,17 +32,17 @@
       tags:
         - package
 
-    - apt_repository:
-        repo: deb https://dl.bintray.com/rabbitmq-erlang/debian bionic erlang
-        state: present
-      tags:
-        - package
-
-    - apt_repository:
-        repo: deb https://dl.bintray.com/rabbitmq/debian bionic main
-        state: present
-      tags:
-        - package
+#    - apt_repository:
+#        repo: deb https://dl.bintray.com/rabbitmq-erlang/debian bionic erlang
+#        state: present
+#      tags:
+#        - package
+#
+#    - apt_repository:
+#        repo: deb https://dl.bintray.com/rabbitmq/debian bionic main
+#        state: present
+#      tags:
+#        - package
 
     - name: Install Rabbit MQ
       apt:
