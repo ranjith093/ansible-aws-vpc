@@ -27,7 +27,7 @@ cntl
 [stack_inst:children]
 websrvgrp
 appsrvgrp
-rmqsrcgrp
+rmqsrvgrp
 mcsrvgrp
 dbsrvgrp
 
